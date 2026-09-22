@@ -71,12 +71,10 @@
         
         <!-- Left: Logo & Nav Menus -->
         <div class="flex items-center space-x-2 sm:space-x-4 md:space-x-6 overflow-x-auto">
-          <!-- Z Circle Logo -->
-          <div onclick="switchTab('dashboard')" class="flex items-center cursor-pointer group shrink-0" title="Beranda">
-            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
-              <span class="text-[#58175d] font-black text-xl italic font-serif leading-none">Z</span>
-            </div>
-          </div>
+          <!-- Menu Logo -->
+          <button type="button" onclick="switchTab('dashboard')" class="flex items-center cursor-pointer group shrink-0 rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" title="Beranda" aria-label="Dashboard">
+            <img src="menu-logo.png" alt="Z logo" width="36" height="36" class="w-9 h-9 rounded-full object-contain shadow-sm group-hover:scale-105 transition-transform">
+          </button>
 
           <!-- Navigation Menus (Desktop & Tablet) -->
           <nav class="flex space-x-0.5 md:space-x-1 font-sans font-semibold text-[11px] md:text-xs tracking-wider uppercase overflow-x-auto shrink-0">
@@ -101,13 +99,32 @@
           </nav>
         </div>
 
-        <!-- Right: User Avatar -->
-        <div class="flex items-center space-x-2 sm:space-x-3 shrink-0">
-          <button onclick="showToast('Profil Ferdinand')" title="Profil Pengguna" class="p-1 rounded-full hover:ring-2 hover:ring-white/40 transition">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <!-- Right: User Avatar & Profile Menu -->
+        <div id="profileMenuContainer" class="relative flex items-center space-x-2 sm:space-x-3 shrink-0">
+          <button id="profileMenuButton" type="button" title="Profile menu" aria-label="Profile menu" aria-haspopup="menu" aria-expanded="false" aria-controls="profileMenu" class="p-1 rounded-full hover:ring-2 hover:ring-white/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white transition">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </button>
+          <div id="profileMenu" role="menu" aria-labelledby="profileMenuButton" class="hidden absolute right-0 top-full mt-3 w-56 max-w-[calc(100vw-24px)] max-h-[calc(100dvh-72px)] overflow-y-auto z-40 rounded-2xl border border-slate-200 bg-white p-1.5 shadow-xl text-slate-700">
+            <button type="button" role="menuitem" tabindex="-1" data-profile-action="profile" class="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-left text-sm font-medium hover:bg-purple-50 hover:text-[#58175d] focus:bg-purple-50 focus:text-[#58175d] focus:outline-none transition-colors">
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a7 7 0 00-14 0v2"/><circle cx="13" cy="7" r="4"/></svg>
+              <span>Profile</span>
+            </button>
+            <button type="button" role="menuitem" tabindex="-1" data-profile-action="company" class="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-left text-sm font-medium hover:bg-purple-50 hover:text-[#58175d] focus:bg-purple-50 focus:text-[#58175d] focus:outline-none transition-colors">
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 21v-5h6v5M8 7h2m4 0h2M8 11h2m4 0h2"/></svg>
+              <span>Company Setting</span>
+            </button>
+            <button type="button" role="menuitem" tabindex="-1" data-profile-action="language" class="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-left text-sm font-medium hover:bg-purple-50 hover:text-[#58175d] focus:bg-purple-50 focus:text-[#58175d] focus:outline-none transition-colors">
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h12M9 3v2m4 0c-1 6-5 9-9 11m2-8c1 3 4 6 7 7m1 6 4-11 4 11m-6.5-4h5"/></svg>
+              <span>Change Language</span>
+            </button>
+            <div role="separator" class="my-1 border-t border-slate-100"></div>
+            <button type="button" role="menuitem" tabindex="-1" data-profile-action="logout" class="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-left text-sm font-medium text-rose-600 hover:bg-rose-50 focus:bg-rose-50 focus:outline-none transition-colors">
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4m7 14 5-5-5-5m5 5H9"/></svg>
+              <span>Logout</span>
+            </button>
+          </div>
         </div>
 
       </div>
@@ -8917,6 +8934,82 @@ Formatkan draf agar siap langsung disalin dan dikirimkan oleh Finance Team.`;
         toast.classList.add('translate-y-20', 'opacity-0');
       }, 2400);
     };
+
+    // Profile popup; account actions remain placeholders in this demo.
+    (function setupProfileMenu() {
+      const container = document.getElementById('profileMenuContainer');
+      const trigger = document.getElementById('profileMenuButton');
+      const menu = document.getElementById('profileMenu');
+      const items = Array.from(menu.querySelectorAll('[role="menuitem"]'));
+
+      function closeMenu(restoreFocus = false) {
+        menu.classList.add('hidden');
+        trigger.setAttribute('aria-expanded', 'false');
+        if (restoreFocus) trigger.focus();
+      }
+
+      function openMenu(index = 0) {
+        menu.classList.remove('hidden');
+        trigger.setAttribute('aria-expanded', 'true');
+        items[index].focus();
+      }
+
+      trigger.addEventListener('click', () => {
+        if (menu.classList.contains('hidden')) openMenu();
+        else closeMenu(true);
+      });
+
+      trigger.addEventListener('keydown', event => {
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+          event.preventDefault();
+          openMenu(event.key === 'ArrowUp' ? items.length - 1 : 0);
+        }
+      });
+
+      menu.addEventListener('keydown', event => {
+        const index = items.indexOf(document.activeElement);
+        let nextIndex;
+        if (event.key === 'ArrowDown') nextIndex = (index + 1) % items.length;
+        else if (event.key === 'ArrowUp') nextIndex = (index - 1 + items.length) % items.length;
+        else if (event.key === 'Home') nextIndex = 0;
+        else if (event.key === 'End') nextIndex = items.length - 1;
+        else if (event.key === 'Tab') closeMenu(true);
+        if (nextIndex !== undefined) {
+          event.preventDefault();
+          items[nextIndex].focus();
+        }
+      });
+
+      menu.addEventListener('click', event => {
+        const item = event.target.closest('[data-profile-action]');
+        if (!item || !menu.contains(item)) return;
+        const messages = {
+          profile: 'Profile settings are not available yet.',
+          company: 'Company settings are not available yet.',
+          language: 'Language switching is not available yet.',
+          logout: 'Logout is not available in this demo. No login session is active.'
+        };
+        closeMenu(true);
+        showToast(messages[item.dataset.profileAction]);
+      });
+
+      document.addEventListener('click', event => {
+        if (!menu.classList.contains('hidden') && !container.contains(event.target)) {
+          closeMenu(menu.contains(document.activeElement));
+        }
+      }, true);
+
+      document.addEventListener('focusin', event => {
+        if (!container.contains(event.target)) closeMenu();
+      });
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && !menu.classList.contains('hidden')) {
+          event.preventDefault();
+          closeMenu(true);
+        }
+      });
+    })();
 
     // Initial table rendering on load
     window.addEventListener('DOMContentLoaded', () => {
